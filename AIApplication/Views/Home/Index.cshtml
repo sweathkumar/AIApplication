@@ -1,0 +1,34 @@
+﻿<div class="container mt-5">
+
+    <div class="card shadow p-4">
+        <h4 class="mb-3">AI Application</h4>
+
+        <form method="post" asp-action="Generate">
+
+            <div class="mb-3">
+                <label class="form-label">Select Mode</label>
+                <select name="mode" class="form-select">
+                    <option value="input">Prompt (AI Response)</option>
+                    <option value="embedding">Embedding (Store in DB)</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Enter Text</label>
+                <input type="text" name="text" class="form-control" placeholder="Type your text here..." />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+
+        </form>
+    </div>
+
+    @if (ViewBag.Result != null)
+    {
+        <div class="card shadow mt-4 p-4">
+            <h5>@ViewBag.Title</h5>
+            <p class="mt-2 text-break">@ViewBag.Result</p>
+        </div>
+    }
+
+</div>

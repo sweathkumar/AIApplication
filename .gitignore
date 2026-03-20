@@ -52,3 +52,7 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+/AIApplication/appsettings.json
+/AIApplication/Properties/launchSettings.json
+/AIApplication/appsettings.Development.json
+/.vs
