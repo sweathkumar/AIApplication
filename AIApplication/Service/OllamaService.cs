@@ -78,7 +78,8 @@ namespace AIApplication.Service
 
                 using var doc = JsonDocument.Parse(json);
 
-                var result = doc.RootElement.GetProperty("response").GetString() ?? doc.RootElement.GetProperty("error").GetString();
+                //var result = doc.RootElement.GetProperty("response").GetString() ?? doc.RootElement.GetProperty("error").GetString();
+                var result = doc.RootElement.GetProperty("choices")[0].GetProperty("message").GetProperty("content").GetString();
 
                 return result ?? "";
             }
