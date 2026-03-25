@@ -61,10 +61,8 @@ namespace AIApplication.Service
                 var body = new
                 {
                     model = _chatModel,
-                    messages = new[]
-                    {
-                        new { role = "user", content = text }
-                    }
+                    prompt = text,
+                    stream = false
                 };
 
                 var content = new StringContent(
@@ -72,14 +70,13 @@ namespace AIApplication.Service
                     Encoding.UTF8,
                     "application/json");
 
-                var response = await _http.PostAsync( $"{_baseUrl}", content);
+                var response = await _http.PostAsync($"{_baseUrl}/api/generate", content);
 
                 var json = await response.Content.ReadAsStringAsync();
 
                 using var doc = JsonDocument.Parse(json);
 
-                var result = doc.RootElement.GetProperty("response").GetString() ?? doc.RootElement.GetProperty("error").GetString();
-                //var result = doc.RootElement.GetProperty("choices")[0].GetProperty("message").GetProperty("content").GetString();
+                var result = doc.RootElement.GetProperty("response").GetString();
 
                 return result ?? "";
             }
